@@ -3,3 +3,12 @@ provider "aws"{
   access_key = "21212121"
   secret_key = "121213"
 }
+resource  aws_lambda_function "example" {
+ function_name = "ServerlessExample"
+
+ s3_bucket = "terraform-serverless-example"
+ s3_key    = "v1.0.0/example.zip"
+ handler = "main.handler"
+ runtime = "nodejs6.10"
+ role = ${aws_iam_role.lambda_exec.arn}
+}
