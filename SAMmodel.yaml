@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  PutFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      Policies: AWSLambdaDynamoDBExecutionRole
+      CodeUri: s3://bucketName/codepackage.zip
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref DynamoDBTable
+  DeleteFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      Policies: AWSLambdaDynamoDBExecutionRole
+      CodeUri: s3://bucketName/codepackage.zip
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref DynamoDBTable
+      Events:
+        Stream:
+          Type: DynamoDB
+          Properties:
+            Stream: !GetAtt DynamoDBTable.StreamArn
+            BatchSize: 100
+            StartingPosition: TRIM_HORIZON
+
+   DynamoDBTable:
+     Type: AWS::DynamoDB::Table
+     Properties: 
+       AttributeDefinitions: 
+         - AttributeName: id
+           AttributeType: S
+       KeySchema: 
+         - AttributeName: id
+           KeyType: HASH
+       ProvisionedThroughput: 
+         ReadCapacityUnits: 5
+         WriteCapacityUnits: 5
+       StreamSpecification:
+         StreamViewType: streamview type
+    
