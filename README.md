@@ -4,7 +4,7 @@ This is a model that can map AWS SAM to the terraform module
 <p align="center"><img src="https://github.com/chashikajw/smart-worker-images/blob/master/terraformmap.jpg" /></p>
 
 What is Terraform?
-
+===================
 
 Terraform is an open source tool created by HashiCorp and written in the Go programming language.
 The Go code compiles down into a single binary called, terraform.
@@ -14,7 +14,7 @@ That means Terraform gets to leverage the infrastructure those providers are alr
 
 
 What is AWS Serverless Application Model (AWS SAM)?
-
+===================
 
 What is a serverless architecture?
 A serverless architecture is a way to build and run applications and services without having to manage infrastructure.
@@ -27,3 +27,16 @@ AWS SAM is natively supported by AWS CloudFormation and defines simplified synta
 The specification currently covers APIs, Lambda functions and Amazon DynamoDB tables.
 SAM is available under Apache 2.0 for AWS partners and customers to adopt and extend within their own toolsets.
 
+What is Mapping module?
+===================
+
+Mapping module can map SAM to terraform model.
+
+
+**References**</br>
+[AWS Serverless Application Module(AWS)](https://github.com/awslabs/serverless-application-model)</br>
+[Terraform](https://www.terraform.io/)</br>
+
+
+**Licence**</br>
+[MIT licence](https://github.com/codezilla2018/aws-sam-mapping-terraform/blob/master/LICENSE)
